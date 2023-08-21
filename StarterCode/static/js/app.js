@@ -1,4 +1,5 @@
 // Create a function to update the charts based on the selected sample
+// Create a function to update the charts based on the selected sample
 function updateCharts(sample) {
     console.log(sample);
 
@@ -47,9 +48,13 @@ function updateCharts(sample) {
     });
 }
 
-// Call the init function when the DOM is ready
-document.addEventListener('DOMContentLoaded', function () {
-    // Initialize the dropdown
+// Create a function to update the metadata based on the selected sample
+function updateMetadata(sample) {
+    // Your code to update metadata here...
+}
+
+// Initialize the dropdown and load initial data
+function initializeDropdown() {
     const dropdown = document.getElementById('selDataset');
 
     // Populate the dropdown with sample IDs
@@ -64,8 +69,17 @@ document.addEventListener('DOMContentLoaded', function () {
     dropdown.addEventListener('change', (event) => {
         const selectedSample = event.target.value;
         updateCharts(selectedSample);
+        updateMetadata(selectedSample);
     });
+}
+
+// Call the init function when the DOM is ready
+document.addEventListener('DOMContentLoaded', function () {
+    // Initialize the dropdown and load initial data
+    initializeDropdown();
 
     // Initial chart and metadata update
-    updateCharts(samples[0].id);
+    const initialSample = samples[0].id; // Change this to your default sample ID
+    updateCharts(initialSample);
+    updateMetadata(initialSample);
 });
